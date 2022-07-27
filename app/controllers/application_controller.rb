@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   private
-=begin
   def auth_teamid
     authenticate_or_request_with_http_basic('Administration') do |username, password|
       teamid = Integer(params[:teamid])
@@ -17,7 +16,7 @@ class ApplicationController < ActionController::Base
   def auth_for_acc_with_id teamid, username, password
     username == Logins::USERNAMES[teamid] && password == Logins::PASSWORDS[teamid]
   end
-=end
+=begin
   def auth_teamid
     true
   end
@@ -27,7 +26,7 @@ class ApplicationController < ActionController::Base
   def auth_for_acc_with_id
     true
   end
-
+=end
   def self.add_item_log message
     i = ItemLog.new
     i[:message] = message
