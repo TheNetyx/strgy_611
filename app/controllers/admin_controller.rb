@@ -20,7 +20,9 @@ class AdminController < ApplicationController
           item.t3,
           item.t4,
           item.t5,
-          item.t6
+          item.t6,
+          item.t7,
+          item.t8
         ],
         id: item.identifier
       })
@@ -32,6 +34,8 @@ class AdminController < ApplicationController
       @round.t4s,
       @round.t5s,
       @round.t6s,
+      @round.t7s,
+      @round.t8s,
     ]
     @conflicts = get_conflicts
 
@@ -52,6 +56,8 @@ class AdminController < ApplicationController
       @round.t4s,
       @round.t5s,
       @round.t6s,
+      @round.t7s,
+      @round.t8s,
     ]
 
     @conflicts = get_conflicts

@@ -26,19 +26,10 @@
     <legend>Create new player</legend>
     <%= f.label :name, "Name" %>
     <%= f.text_field :name %> <br />
-
-    <%= f.radio_button :team, "1" %>
-    <%= f.label :team_1, "Team 1" %>
-    <%= f.radio_button :team, "2" %>
-    <%= f.label :team_2, "Team 2" %>
-    <%= f.radio_button :team, "3" %>
-    <%= f.label :team_3, "Team 3" %>
-    <%= f.radio_button :team, "4" %>
-    <%= f.label :team_4, "Team 4" %>
-    <%= f.radio_button :team, "5" %>
-    <%= f.label :team_5, "Team 5" %>
-    <%= f.radio_button :team, "6" %>
-    <%= f.label :team_6, "Team 6" %>
+    <% (1..PlayerConf::NUM_TEAMS).each do |i| %>
+      <%= f.radio_button :team, "#{i}" %>
+      <%= f.label "team_#{i}".to_sym, "Team #{i}" %>
+    <% end %>
     <br />
 <!--
     <%= f.label :xpos, "X" %>

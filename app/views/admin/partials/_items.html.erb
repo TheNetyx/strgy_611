@@ -1,7 +1,7 @@
 <table>
   <tr>
     <th>Item</th>
-    <% (1..6).each do |i| %>
+    <% (1..PlayerConf::NUM_TEAMS).each do |i| %>
       <th>
         <%="Team #{i}"%><br/>
         <%="#{TeamConf::NAMES[i]}"%>

@@ -1,5 +1,5 @@
 class PlayerConf
-  NUM_TEAMS = 6
+  NUM_TEAMS = 8
 end
 
 class RoundsConf
@@ -28,11 +28,13 @@ end
 class TeamConf
   NAMES = [
     nil, # a r r a y   i n d i c e s   s t a r t   a t   1
-    "納稅黨",
-    "阿婆底褲",
-    "Miao",
-    "404ERROR",
-    "忍者小靈精",
-    "LAG GEI",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
+    "PLACEHOLDER_TEAM_NAME",
   ]
 end

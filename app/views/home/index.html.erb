@@ -1,5 +1,5 @@
 <h1>Home</h1>
-<% (1..6).each do |num| %>
+<% (1..PlayerConf::NUM_TEAMS).each do |num| %>
   <%= link_to "Team #{num} (#{TeamConf::NAMES[num]})", play_path(teamid: num) %><br \>
 <% end %>
 <%= link_to "Admin page", admin_path %><br />

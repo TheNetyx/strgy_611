@@ -34,7 +34,9 @@ class RoundsController < ApplicationController
       @round.t3,
       @round.t4,
       @round.t5,
-      @round.t6
+      @round.t6,
+      @round.t7,
+      @round.t8
     ]
 
     render json: {data: @data}
@@ -47,19 +49,10 @@ class RoundsController < ApplicationController
     @game = Round.new
     @game.round = 1
 
-    @game.t1 = false
-    @game.t2 = false
-    @game.t3 = false
-    @game.t4 = false
-    @game.t5 = false
-    @game.t6 = false
-
-    @game.t1s = 0
-    @game.t2s = 0
-    @game.t3s = 0
-    @game.t4s = 0
-    @game.t5s = 0
-    @game.t6s = 0
+    (1..PlayerConf::NUM_TEAMS).each do |i|
+      @game.send("t#{i}=", false)
+      @game.send("t#{i}s=", 0)
+    end
 
     @game.state = RoundsConf::STATE_ACCEPT_MOVES
     @game.save
@@ -73,12 +66,9 @@ class RoundsController < ApplicationController
       new_item.identifier = item[:identifier]
       new_item.name = item[:name]
       new_item.fields = item[:fields]
-      new_item.t1 = 0
-      new_item.t2 = 0
-      new_item.t3 = 0
-      new_item.t4 = 0
-      new_item.t5 = 0
-      new_item.t6 = 0
+      (1..PlayerConf::NUM_TEAMS).each do |i|
+        new_item.send("t#{i}=", 0)
+      end
       new_item.save
     end
 
@@ -153,20 +143,11 @@ class RoundsController < ApplicationController
       # this is probably not the best way to do this, but somehow
       # doing clever shit causes 'cannot coerce nil to float' errors
       # so im doing it the retarded way
-      @game.t1s += @scores[0]
-      @game.t2s += @scores[1]
-      @game.t3s += @scores[2]
-      @game.t4s += @scores[3]
-      @game.t5s += @scores[4]
-      @game.t6s += @scores[5]
-
+      (1..PlayerConf::NUM_TEAMS).each do |i|
+        @game.send("t#{i}s=", @game.send("t#{i}s") + @scores[i])
+        @game.send("t#{i}=", false)
+      end
       @game.round += 1
-      @game.t1 = false
-      @game.t2 = false
-      @game.t3 = false
-      @game.t4 = false
-      @game.t5 = false
-      @game.t6 = false
 
       # revive dead people
       Player.where("respawn_round = ?", @game.round).each do |p|
@@ -179,12 +160,9 @@ class RoundsController < ApplicationController
       # move state -> conflict state
 
       @game.state = RoundsConf::STATE_CONFLICTING
-      @game.t1 = true
-      @game.t2 = true
-      @game.t3 = true
-      @game.t4 = true
-      @game.t5 = true
-      @game.t6 = true
+      (1..PlayerConf::NUM_TEAMS).each do |i|
+        @game.send("t#{i}=", true)
+      end
     end
     @game.save
     redirect_back_or_to root_path
