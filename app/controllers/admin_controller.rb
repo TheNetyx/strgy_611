@@ -6,7 +6,7 @@ class AdminController < ApplicationController
   end
 
   def manage
-    if Round.all.first == nil then
+    unless Round.first then
       redirect_to start_game_path
     end
 
