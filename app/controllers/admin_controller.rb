@@ -6,6 +6,10 @@ class AdminController < ApplicationController
   end
 
   def manage
+    if Round.all.first == nil then
+      redirect_to start_game_path
+    end
+
     @new_player = Player.new
     @players = Player.order(:team).order(:name)
     @round = Round.all.first
