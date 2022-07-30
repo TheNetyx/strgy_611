@@ -5,6 +5,7 @@
 ************************************************************************/
 
 // an array, players, is defined previously, containing the members to display
+const NUM_PLAYERS = 8;
 var ACCESSIBLE_GRIDS = [  // << this is def not the best way to do this.
   {x: 1, y: 4},
   {x: 2, y: 3},

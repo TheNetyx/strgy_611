@@ -47,7 +47,7 @@ function updateMovedTable() {
     if (err !== null) {
       alert('Something went wrong: ' + err);
     } else {
-      for(var i = 1 ; i <= 6 ; i++) {
+      for(var i = 1 ; i <= NUM_PLAYERS ; i++) {
         el = document.getElementById("team" + i + "-moved");
         el.innerHTML = data.data[i - 1] ? "Y" : "N";
         if (data.data[i - 1]) {
