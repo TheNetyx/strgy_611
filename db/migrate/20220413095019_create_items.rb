@@ -9,6 +9,8 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer :t4
       t.integer :t5
       t.integer :t6
+      t.integer :t7
+      t.integer :t8
 
       t.timestamps
     end

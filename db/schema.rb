@@ -36,6 +36,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_122902) do
     t.integer "t4"
     t.integer "t5"
     t.integer "t6"
+    t.integer "t7"
+    t.integer "t8"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "fields"
@@ -60,6 +62,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_122902) do
     t.boolean "t4"
     t.boolean "t5"
     t.boolean "t6"
+    t.boolean "t7"
+    t.boolean "t8"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "t1s"
@@ -68,6 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_01_122902) do
     t.integer "t4s"
     t.integer "t5s"
     t.integer "t6s"
+    t.integer "t7s"
+    t.integer "t8s"
     t.integer "state"
   end
 
