@@ -120,15 +120,13 @@ class RoundsController < ApplicationController
       end
 
       GridConf::SUPER_CHECKPOINTS.each do |cp|
-        GridConf::CHECKPOINTS.each do |cp|
-          collection = Player.where("xpos = ? AND ypos = ? AND alive = true", cp[:x], cp[:y])
-          if collection.count <= 0
-            break
-          elsif collection.count == 1
-            @scores[collection.first.team - 1] += GridConf::SUPER_CP_POINTS
-          else
-            @scores[collection.first.team - 1] += (GridConf::SUPER_CP_POINTS * 1.5).to_i
-          end
+        collection = Player.where("xpos = ? AND ypos = ? AND alive = true", cp[:x], cp[:y])
+        if collection.count <= 0
+          break
+        elsif collection.count == 1
+          @scores[collection.first.team - 1] += GridConf::SUPER_CP_POINTS
+        else
+          @scores[collection.first.team - 1] += (GridConf::SUPER_CP_POINTS * 1.5).to_i
         end
       end
 
@@ -144,7 +142,7 @@ class RoundsController < ApplicationController
       # doing clever shit causes 'cannot coerce nil to float' errors
       # so im doing it the retarded way
       (1..PlayerConf::NUM_TEAMS).each do |i|
-        @game.send("t#{i}s=", @game.send("t#{i}s") + @scores[i])
+        @game.send("t#{i}s=", @game.send("t#{i}s") + @scores[i - 1])
         @game.send("t#{i}=", false)
       end
       @game.round += 1
