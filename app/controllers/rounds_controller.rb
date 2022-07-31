@@ -108,7 +108,7 @@ class RoundsController < ApplicationController
       end
       # calculate scores
       @scores = []
-      (1..GridConf::NUM_TEAMS).each do
+      (1..PlayerConf::NUM_TEAMS).each do
         @scores.push 0
       end
       GridConf::CHECKPOINTS.each do |cp|
