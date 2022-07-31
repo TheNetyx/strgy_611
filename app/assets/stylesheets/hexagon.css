@@ -1,6 +1,6 @@
 .grid-cell{
   min-width: 100px;
-  min-height: 100px;
+  height: 100px;
 }
 
 .sel{
