@@ -87,37 +87,11 @@ end
 
 class TheGrid
   def self.valid_moves player
-    moves = [
-      {x: player.xpos, y: player.ypos},
-      {x: player.xpos, y: player.ypos + 1},
-      {x: player.xpos, y: player.ypos + 2},
-      {x: player.xpos, y: player.ypos - 1},
-      {x: player.xpos, y: player.ypos - 2},
-
-      {x: player.xpos - 1, y: player.ypos},
-      {x: player.xpos - 1, y: player.ypos + 1},
-      {x: player.xpos - 1, y: player.ypos - 1},
-
-
-      {x: player.xpos + 1, y: player.ypos},
-      {x: player.xpos + 1, y: player.ypos + 1},
-      {x: player.xpos + 1, y: player.ypos - 1},
-
-      {x: player.xpos + 2, y: player.ypos},
-      {x: player.xpos + 2, y: player.ypos + 1},
-      {x: player.xpos + 2, y: player.ypos - 1},
-
-      {x: player.xpos - 2, y: player.ypos},
-      {x: player.xpos - 2, y: player.ypos + 1},
-      {x: player.xpos - 2, y: player.ypos - 1},
-    ];
-
-    if (player.xpos % 2) == 1
-      moves.push({x: player.xpos - 1, y: player.ypos - 2})
-      moves.push({x: player.xpos + 1, y: player.ypos - 2})
-    else
-      moves.push({x: player.xpos - 1, y: player.ypos + 2})
-      moves.push({x: player.xpos + 1, y: player.ypos + 2})
+    moves = []
+    (1..GridConf::GRIDSIZE).each do |y|
+      (1..GridConf::GRIDSIZE).each do |x|
+        moves.push({x: player.xpos + x, y: player.ypos + y})
+      end
     end
     moves.each do |m|
       moves.delete m unless GridConf::VALID_SPACES.include? m
