@@ -8,7 +8,7 @@
   <% (1..GridConf::GRIDSIZE).each do |y| %>
     <tr>
       <% (1..GridConf::GRIDSIZE).each do |x| %>
-        <td class="grid-cell" id="cell-<%="#{x}-#{y}"%>"></td>
+        <td class="grid-cell <%="#{GridConf::GRID_CONF[GRIDSIZE*y+x]}"%>" id="cell-<%="#{x}-#{y}"%>"></td>
       <% end %>
     </tr>
   <% end %>
