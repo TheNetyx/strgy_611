@@ -143,7 +143,6 @@ class RoundsController < ApplicationController
             end
           end
         end
-        break
       end
 
       # this is probably not the best way to do this, but somehow
