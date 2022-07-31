@@ -5,19 +5,14 @@ class ItemsController < ApplicationController
     teamid = params[:teamid]
     item = Item.find_by identifier: params[:itemid]
 
-
-    if item && item["t#{teamid}".to_sym] > 0
-      # except for instant respawn, which is, uh, instant, the others
-      # take effect the next round. instant respawns still create an
-      # ItemRequest to show a message to admins, but it will not affect
-      # anything when moving to the next round. the fields are also
-      # checked like any other item.
-      entry = ItemRequest.new
+    if item
+      req = ItemRequest.new
       entry[:team] = params[:teamid].to_i
       entry[:item] =  params[:itemid].to_i
       entry[:targetcell] = params[:targetcell]
       entry[:targetplayer] = params[:targetplayer].to_i
       entry[:processed] = false
+
       if self.class.check_fields entry, item[:fields]
         entry.save
         item["t#{teamid}".to_sym] -= 1
@@ -62,13 +57,11 @@ class ItemsController < ApplicationController
     if rules & ItemConf::FieldsConstants::NOCP > 0
       return false if (!is_valid_space_wrapper model) || (GridConf::ALL_CP.include? coords_hash(model))
     end
-    if (rules & ItemConf::FieldsConstants::ALIV > 0) || rules & ItemConf::FieldsConstants::DEAD > 0
-      return false if (!(p = Player.find model[:targetplayer].to_i)) || (p[:team] != model[:team])
-      if (rules & ItemConf::FieldsConstants::ALIV > 0)
-        return false if !p[:alive]
-      else
-        return false if p[:alive]
-      end
+    if (rules & ItemConf::FieldsConstants::ALIV > 0)
+      return false if (!(p = Player.find model[:targetplayer].to_i)) || (p[:team] != model[:team] || !p[:alive])
+    end
+    if (rules & ItemConf::FieldsConstants::DEAD > 0)
+      return false if (!(p = Player.find model[:targetplayer].to_i)) || (p[:team] != model[:team] || p[:alive])
     end
     true
   end

@@ -15,12 +15,10 @@ class ItemConf
     ALIV = 0b01000 # alive player
     DEAD = 0b10000 # dead player
   end
+
   ITEMS = [
     {identifier: 0, name: "bomb", fields: FieldsConstants::CELL},
-    {identifier: 1, name: "locator", fields: FieldsConstants::CELL},
     {identifier: 2, name: "instant respawn", fields: FieldsConstants::DEAD},
-    {identifier: 3, name: "minus points card", fields: FieldsConstants::TEAM},
-    {identifier: 4, name: "teleporter", fields: FieldsConstants::ALIV | FieldsConstants::NOCP}
   ]
 end
 
