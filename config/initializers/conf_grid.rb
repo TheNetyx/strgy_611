@@ -56,18 +56,18 @@ class GridConf
   GRIDSIZE = 9
   private
   valid_spaces = []
-  team_bases = []
+  team_bases = [nil]
   checkpoints = []
   super_checkpoints = []
   i = 0
-  (1..7).each do |y|
+  (1..9).each do |y|
     (1..9).each do |x|
-      valid_spaces.push({x: x, y: y}) if GRID_CONF[i] != 0
+      valid_spaces.push({x: x, y: y})
 
-      team_bases[GRID_CONF[i] - 2] = {x: x, y:y} if GRID_CONF[i] >= 2 && GRID_CONF[i] <= 7
+      team_bases[GRID_CONF[i]] = {x: x, y:y} if GRID_CONF[i] >= 1 && GRID_CONF[i] <= 8
 
-      checkpoints.push({x: x, y: y}) if GRID_CONF[i] == 8
-      super_checkpoints.push({x: x, y: y}) if GRID_CONF[i] == 9
+      checkpoints.push({x: x, y: y}) if GRID_CONF[i] == 9
+      super_checkpoints.push({x: x, y: y}) if GRID_CONF[i] == 10
 
       i += 1
     end
