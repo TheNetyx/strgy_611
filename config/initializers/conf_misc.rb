@@ -28,13 +28,13 @@ end
 class TeamConf
   NAMES = [
     nil, # a r r a y   i n d i c e s   s t a r t   a t   1
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
-    "PLACEHOLDER_TEAM_NAME",
+    "T1",
+    "T2",
+    "T3",
+    "T4",
+    "T5",
+    "T6",
+    "T7",
+    "T8",
   ]
 end

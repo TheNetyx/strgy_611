@@ -136,7 +136,12 @@ class RoundsController < ApplicationController
       GridConf::TEAM_BASES.each do |cp|
         collection = Player.where("xpos = ? AND ypos = ? AND alive = true", cp[:x], cp[:y])
         if collection.count > 0
-          @scores[GridConf::TEAM_BASES.find_index cp] -= GridConf::ENEMY_IN_BASE_PENALTY
+          collection.each do |p|
+            if p.team != GridConf::TEAM_BASES.find_index cp
+              @scores[GridConf::TEAM_BASES.find_index cp] -= GridConf::ENEMY_IN_BASE_PENALTY
+              break
+            end
+          end
         end
         break
       end
