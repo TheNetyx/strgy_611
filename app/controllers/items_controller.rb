@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
     item = Item.find_by identifier: params[:itemid]
 
     if item
-      req = ItemRequest.new
+      entry = ItemRequest.new
       entry[:team] = params[:teamid].to_i
       entry[:item] =  params[:itemid].to_i
       entry[:targetcell] = params[:targetcell]
