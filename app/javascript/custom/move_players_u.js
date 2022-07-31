@@ -62,7 +62,7 @@ function selectPlayer(id) {
     var spaces = getPossibleSpaces(selectedPlayer);
     for (var i = 0 ; i < spaces.length ; i++) {
 //      legalMoves.push(convertNumCordsToStr(spaces[i]));
-      document.getElementById(convertNumCordsToStr(spaces[i])).parentElement.classList.add("legal-move");
+      document.getElementById(convertNumCordsToStr(spaces[i])).classList.add("legal-move");
     }
   }
 }
