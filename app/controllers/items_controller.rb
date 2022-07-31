@@ -18,8 +18,8 @@ class ItemsController < ApplicationController
           # instantly respawn using instant respawn
           p = Player.find params[:targetplayer]
           p.alive = true
-          p.xpos = GridConf::TEAM_BASES[@player.team - 1][:x]
-          p.ypos = GridConf::TEAM_BASES[@player.team - 1][:y]
+          p.xpos = GridConf::TEAM_BASES[p.team - 1][:x]
+          p.ypos = GridConf::TEAM_BASES[p.team - 1][:y]
           p.save
           self.class.add_item_log "team #{params[:teamid]} (#{TeamConf::NAMES[params[:teamid].to_i]}) used respawn on #{p.name}"
         else
