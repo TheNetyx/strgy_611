@@ -4,14 +4,12 @@
 <%= stylesheet_link_tag "hexagon_players" %>
 
 <% i = 0 %>
-<div class="honeycomb">
-  <% (1..7).each do |y| %>
-    <div class="ibws-fix">
-      <% (1..9).each do |x| %>
-        <div class="<%= GridConf::GRID_NAME[GridConf::GRID_CONF[i]]%><%i += 1 %>">
-          <div class="hexagontent" id="cell-<%= "#{x}-#{y}" %>"></div>
-        </div>
+<table class="grid">
+  <% (1..GridConf::GRIDSIZE).each do |y| %>
+    <tr>
+      <% (1..GridConf::GRIDSIZE).each do |x| %>
+        <td id="cell-<%="#{x}-#{y}"%>"></td>
       <% end %>
-    </div>
+    </tr>
   <% end %>
 </div>

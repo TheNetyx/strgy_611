@@ -48,6 +48,8 @@ class GridConf
     "hexagon checkpoint",
     "hexagon super-checkpoint"
   ]
+
+  GRIDSIZE = 9
   private
   valid_spaces = []
   team_bases = []
