@@ -107,7 +107,10 @@ class RoundsController < ApplicationController
         redirect_back_or_to root_path and return
       end
       # calculate scores
-      @scores = [0, 0, 0, 0, 0, 0]
+      @scores = []
+      (1..GridConf::NUM_TEAMS).each do
+        @scores.push 0
+      end
       GridConf::CHECKPOINTS.each do |cp|
         collection = Player.where("xpos = ? AND ypos = ? AND alive = true", cp[:x], cp[:y])
         if collection.count <= 0
