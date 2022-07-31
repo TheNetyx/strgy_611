@@ -117,7 +117,7 @@ function getPossibleSpaces(id) {
       }
     }
   }
-
+console.log(arr);
   return arr;
 }
 
