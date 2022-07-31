@@ -143,7 +143,8 @@ setInterval(function() {
 // yes, i know the following 2 functions are very similar, but
 // i can't be bothered to DRY it up
 function setHexagonOnClick(type) {
-  var hexagons = document.getElementsByClassName("hexagon");
+  // the 'hexagon' in the name is from when the grid used to be made of hexagons, now its a grid
+  var hexagons = document.getElementsByClassName("grid-cell");
   if (type == "moveTo") {
     for (var i = 0 ; i < hexagons.length ; i++) {
       hexagons[i].setAttribute("onclick", "moveTo(\"" + hexagons[i].firstElementChild.id + "\")");
