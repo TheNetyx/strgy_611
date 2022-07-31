@@ -42,7 +42,7 @@ function renderPlayers(players) {
     if (players[i].alive)
       var dest = "cell-" + players[i].xpos + "-" + players[i].ypos
     else
-      var dest = "cell-9-1"
+      var dest = "cell-0-0"
     var grid = document.getElementById(dest);
     if (grid == null) { // player with invalid location
       continue;
