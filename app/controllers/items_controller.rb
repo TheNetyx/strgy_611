@@ -24,9 +24,10 @@ class ItemsController < ApplicationController
           self.class.add_item_log "team #{params[:teamid]} (#{TeamConf::NAMES[params[:teamid].to_i]}) used respawn on #{p.name}"
         else
           entry.save
-          item["t#{teamid}".to_sym] -= 1
-          item.save
         end
+
+        item["t#{teamid}".to_sym] -= 1
+        item.save
       else
         flash[:notice] = ["missing or invalid field(s)"]
       end
