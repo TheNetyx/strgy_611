@@ -19,7 +19,6 @@ window.addEventListener('load', (event) => {
 
 
 function init() {
-  document.getElementById("cell-9-1").classList.add("cemetery");
   renderPlayersWrapper();
 
   getRound();
@@ -93,47 +92,16 @@ function clearSelected() {
 }
 
 // returns an array of legal moves for a player
-function getPossibleSpaces(id) {
+function isValidMove(id, destCoords) {
   var player = getPlayerWithId(id);
-  var arr = [ // theres probably a smarter way to do this.
-    {x: player.xpos, y: player.ypos},
-    {x: player.xpos, y: player.ypos + 1},
-    {x: player.xpos, y: player.ypos + 2},
-    {x: player.xpos, y: player.ypos - 1},
-    {x: player.xpos, y: player.ypos - 2},
 
-    {x: player.xpos - 1, y: player.ypos},
-    {x: player.xpos - 1, y: player.ypos + 1},
-    {x: player.xpos - 1, y: player.ypos - 1},
-
-
-    {x: player.xpos + 1, y: player.ypos},
-    {x: player.xpos + 1, y: player.ypos + 1},
-    {x: player.xpos + 1, y: player.ypos - 1},
-
-    {x: player.xpos + 2, y: player.ypos},
-    {x: player.xpos + 2, y: player.ypos + 1},
-    {x: player.xpos + 2, y: player.ypos - 1},
-
-    {x: player.xpos - 2, y: player.ypos},
-    {x: player.xpos - 2, y: player.ypos + 1},
-    {x: player.xpos - 2, y: player.ypos - 1},
-  ];
-
-  if (player.xpos % 2) {
-    arr.push({x: player.xpos - 1, y: player.ypos - 2})
-    arr.push({x: player.xpos + 1, y: player.ypos - 2})
-  } else {
-    arr.push({x: player.xpos - 1, y: player.ypos + 2})
-    arr.push({x: player.xpos + 1, y: player.ypos + 2})
+  if(destCoords.x < 0 || destCoords.y < 0 || destCoords.x > 9
+     || destCoords.y > 9 || destCoords.x - player.xpos > 2
+     || destCoords.x - player.xpos < -2 || destCoords.y - player.ypos > 2
+     || destCoords.y - player.ypos < -2 ) {
+    return false;
   }
-
-  for (var i = 0 ; i < arr.length ; i++) {
-    if (! isAccessable({x: arr[i].x, y: arr[i].y})) {
-      arr.splice (i--, 1);  //decrements i afterward because the array shrinks
-    }
-  }
-  return arr;
+  return true;
 }
 
 function isAccessable(coords) {

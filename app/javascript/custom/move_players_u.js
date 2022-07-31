@@ -83,10 +83,7 @@ function moveTo(dest) {
     y: destxy[1]
   }
 
-  if (getPossibleSpaces(selectedPlayer).some(
-    value => { return value.x == destCoords.x && value.y == destCoords.y } )
-  ) {
-
+  if (isValidMove(id, destCoords)) {
     // change movedPlayers.
     getMovedPlayerWithId(selectedPlayer).xpos = destCoords.x;
     getMovedPlayerWithId(selectedPlayer).ypos = destCoords.y;
