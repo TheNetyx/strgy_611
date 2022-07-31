@@ -104,6 +104,23 @@ function isValidMove(id, destCoords) {
   return true;
 }
 
+function getPossibleSpaces(id) {
+  var player = getPlayerWithId(id);
+  var coords;
+
+  arr = [];
+  for(var i = -2; i <= 2; i++) {
+    for(var j = -2; j <= 2; j++) {
+      coords = {x: player.xpos + i, y: player.ypos + j};
+      if(coords.x >= 0 && coords.y >= 0 && coords.x <= 9 && coords.y <= 9) {
+        arr.push(coords);
+      }
+    }
+  }
+
+  return arr;
+}
+
 function isAccessable(coords) {
   return coords.x && coords.y && coords.x <= 9 && coords.y <= 9
 }
