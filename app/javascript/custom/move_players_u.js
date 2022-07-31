@@ -147,11 +147,11 @@ function setHexagonOnClick(type) {
   var hexagons = document.getElementsByClassName("grid-cell");
   if (type == "moveTo") {
     for (var i = 0 ; i < hexagons.length ; i++) {
-      hexagons[i].setAttribute("onclick", "moveTo(\"" + hexagons[i].firstElementChild.id + "\")");
+      hexagons[i].setAttribute("onclick", "moveTo(\"" + hexagons[i].id + "\")");
     }
   } else if (type == "select") {
     for (var i = 0 ; i < hexagons.length ; i++) {
-      hexagons[i].setAttribute("onclick", "pickCell(\"" + hexagons[i].firstElementChild.id + "\")");
+      hexagons[i].setAttribute("onclick", "pickCell(\"" + hexagons[i].id + "\")");
     }
     p = document.getElementsByClassName("player");
     for (var i = 0 ; i < p.length ; i++) {
