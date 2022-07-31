@@ -64,8 +64,8 @@ class GridConf
     (1..9).each do |x|
       valid_spaces.push({x: x, y: y})
 
-      # i dont know why it is GRID_CONF[i] + 1, it's probably some ancient spaghetti
-      team_bases[GRID_CONF[i] + 1] = {x: x, y:y} if GRID_CONF[i] >= 1 && GRID_CONF[i] <= 8
+      # i dont know why it is GRID_CONF[i] - 1, it's probably some ancient spaghetti
+      team_bases[GRID_CONF[i] - 1] = {x: x, y:y} if GRID_CONF[i] >= 1 && GRID_CONF[i] <= 8
 
       checkpoints.push({x: x, y: y}) if GRID_CONF[i] == 9
       super_checkpoints.push({x: x, y: y}) if GRID_CONF[i] == 10
