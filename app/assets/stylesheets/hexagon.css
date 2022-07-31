@@ -55,6 +55,21 @@
   color: white;
 }
 
+.team7, .team7 > td {
+  background: pink;
+  color: black;
+}
+
+.team8, .team8 > td {
+  background: magenta;
+  color: white;
+}
+
+.team6, .team8 > td {
+  background: saddlebrown;
+  color: white;
+}
+
 .cemetery {
   background: grey;
 }

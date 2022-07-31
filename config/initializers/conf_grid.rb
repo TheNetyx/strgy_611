@@ -37,16 +37,17 @@ class GridConf
     0,0,6,0,0,0,5,0,0
   ]
   GRID_NAME = [
-    "hexanone",
-    "hexagon sel",
-    "hexagon team1",  # bases
-    "hexagon team2",
-    "hexagon team3",
-    "hexagon team4",
-    "hexagon team5",
-    "hexagon team6",
-    "hexagon checkpoint",
-    "hexagon super-checkpoint"
+    "",
+    "team1",  # bases
+    "team2",
+    "team3",
+    "team4",
+    "team5",
+    "team6",
+    "team7",
+    "team8",
+    "checkpoint",
+    "super-checkpoint"
   ]
 
   GRIDSIZE = 9
