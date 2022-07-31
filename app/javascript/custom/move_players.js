@@ -112,12 +112,11 @@ function getPossibleSpaces(id) {
   for(var i = -2; i <= 2; i++) {
     for(var j = -2; j <= 2; j++) {
       coords = {x: player.xpos + i, y: player.ypos + j};
-      if(coords.x >= 0 && coords.y >= 0 && coords.x <= 9 && coords.y <= 9) {
+      if(coords.x > 0 && coords.y > 0 && coords.x <= 9 && coords.y <= 9) {
         arr.push(coords);
       }
     }
   }
-console.log(arr);
   return arr;
 }
 
