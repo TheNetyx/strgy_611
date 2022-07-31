@@ -60,8 +60,8 @@ class GridConf
   checkpoints = []
   super_checkpoints = []
   i = 0
-  (1..9).each do |y|
-    (1..9).each do |x|
+  (1..GridConf::GRIDSIZE).each do |y|
+    (1..GridConf::GRIDSIZE).each do |x|
       valid_spaces.push({x: x, y: y})
 
       # i dont know why it is GRID_CONF[i] - 1, it's probably some ancient spaghetti
@@ -88,8 +88,8 @@ end
 class TheGrid
   def self.valid_moves player
     moves = []
-    (1..GridConf::GRIDSIZE).each do |y|
-      (1..GridConf::GRIDSIZE).each do |x|
+    (-2..2).each do |y|
+      (-2..2).each do |x|
         moves.push({x: player.xpos + x, y: player.ypos + y})
       end
     end
@@ -100,15 +100,12 @@ class TheGrid
   end
 
   def self.is_valid_space? coords
-    i = 0
-    (1..7).each do |y|
-      (1..9).each do |x|
+    (1..GridConf::GRIDSIZE).each do |y|
+      (1..GridConf::GRIDSIZE).each do |x|
         if (x == coords[:x] && y == coords[:y])
-          return GridConf::GRID_CONF[i] != 0
+          return true
         end
-        i += 1
       end
     end
-    false
   end
 end
