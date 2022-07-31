@@ -82,11 +82,7 @@ class RoundsController < ApplicationController
       # conflict state -> move state
 
       @game.state = RoundsConf::STATE_ACCEPT_MOVES
-      # check for remaining conflicts - do not allow admin overriding
-      # this probably isnt a very efficient way of doing things.
 
-# items caused errors, so it's temporarily
-=begin
       # items take effect here.
       # known bug: respawn messages get deleted. i'm not gonna fix this, it's not
       # game breaking and i can't be bothered to deal with it.
@@ -97,7 +93,10 @@ class RoundsController < ApplicationController
         req.save
       end
       ItemRequest.destroy_all
-=end
+
+
+      # check for remaining conflicts - do not allow admin overriding
+      # this probably isnt a very efficient way of doing things.
       @locations = []
       Player.where("alive = true").each do |p|
         @locations.push({x: p.xpos, y: p.ypos})
@@ -202,15 +201,15 @@ class RoundsController < ApplicationController
         kills += 1 if p.save
       end
       add_item_log "team #{t} (#{TeamConf::NAMES[t]}) bombed #{c}, killing #{kills}"
-
+=begin
     # locator
     when 1
       coords = c.split "-"
       count = Player.where("xpos = ?", coords[1].to_i).where("ypos = ?", coords[2].to_i).count
       add_item_log "team #{t}  (#{TeamConf::NAMES[t]}) revealed #{count} enemies on square #{c}"
-
+=end
     # instant respawn is number 2, skip
-
+=begin
     # minus points card
     when 3
       coords = c.split "-"
@@ -228,6 +227,7 @@ class RoundsController < ApplicationController
       player.ypos = coords[2].to_i
       player.save
       add_item_log "team #{t} (#{TeamConf::NAMES[t]}) teleported #{player[:name]} to #{c}"
+=end
     else
       add_item_log "ERR: team #{t} (#{TeamConf::NAMES[t]}) used an invalid item"
     end

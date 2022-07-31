@@ -14,16 +14,18 @@ class ItemsController < ApplicationController
       entry[:processed] = false
 
       if self.class.check_fields entry, item[:fields]
-        entry.save
-        item["t#{teamid}".to_sym] -= 1
-        item.save
-
         if params[:itemid].to_i == 2
           # instantly respawn using instant respawn
           p = Player.find params[:targetplayer]
           p.alive = true
+          p.xpos = GridConf::TEAM_BASES[@player.team - 1][:x]
+          p.ypos = GridConf::TEAM_BASES[@player.team - 1][:y]
           p.save
           self.class.add_item_log "team #{params[:teamid]} (#{TeamConf::NAMES[params[:teamid].to_i]}) used respawn on #{p.name}"
+        else
+          entry.save
+          item["t#{teamid}".to_sym] -= 1
+          item.save
         end
       else
         flash[:notice] = ["missing or invalid field(s)"]
