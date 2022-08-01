@@ -73,6 +73,6 @@ setInterval(function() {
 // confirm before advancing round if not all teams have moved
 function advanceOnSubmit() {
   if(allPlayersMoved || confirm("Some teams haven't moved yet. Advance anyway?")) {
-    document.getElementById("advance-form").submitForm();
+    document.getElementById("advance-form").submit();
   }
 }
