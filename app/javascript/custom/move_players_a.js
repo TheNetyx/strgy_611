@@ -1,3 +1,5 @@
+var allPlayersMoved = false;
+
 // override functions for players (moving, selecting, etc)
 function updateRoundCounter(){
 } // admin page round counter doesnt update.
@@ -49,10 +51,13 @@ function updateMovedTable() {
     } else {
       for(var i = 1 ; i <= NUM_PLAYERS ; i++) {
         el = document.getElementById("team" + i + "-moved");
-        el.innerHTML = data.data[i - 1] ? "Y" : "N";
-        if (data.data[i - 1]) {
+        allPlayersMoved = true;
+        if(data.data[i - 1]) {
+          el.innerHTML = "Y";
           el.classList.remove("negative");
         } else {
+          allPlayersMoved = false;
+          el.innerHTML = "N";
           el.classList.add("negative");
         }
       }
@@ -64,3 +69,10 @@ function updateMovedTable() {
 setInterval(function() {
   init();
 }, 5000);
+
+// confirm before advancing round if not all teams have moved
+function advanceOnSubmit() {
+  if(allPlayersMoved || confirm("Some teams haven't moved yet. Advance anyway?")) {
+    document.getElementById("advance-form").submitForm();
+  }
+}
