@@ -176,7 +176,7 @@ class RoundsController < ApplicationController
   private
   def all_same_team repeat_locs
     repeat_locs.each do |loc|
-      players = Player.where("xpos = ? AND ypos = ?", loc[:x], loc[:y])
+      players = Player.where("alive = true AND xpos = ? AND ypos = ?", loc[:x], loc[:y])
       team = players[0][:team]
       players.each do |p|
         if p[:team] != team
