@@ -81,7 +81,7 @@ class AdminController < ApplicationController
 
     repeats = locations.select{ |i| locations.count(i) > 1 }.uniq
     repeats.each do |r|
-      occupants = Player.where("xpos = ? AND ypos = ?", r[:x], r[:y]).order(:team)
+      occupants = Player.where("alive=true AND xpos = ? AND ypos = ?", r[:x], r[:y]).order(:team)
       t = occupants[0].team
       conflicts.push({combatants: occupants}) unless occupants.all?{|i| i.team == t}
     end
