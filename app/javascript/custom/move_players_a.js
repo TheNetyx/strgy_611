@@ -61,6 +61,10 @@ function updateMovedTable() {
           el.classList.add("negative");
         }
       }
+
+      if(allPlayersMoved && confirm("All teams have moved. Advance round?")) {
+        advanceOnSubmit();
+      }
     }
   });
 }
