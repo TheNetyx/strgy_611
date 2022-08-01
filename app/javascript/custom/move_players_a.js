@@ -62,7 +62,7 @@ function updateMovedTable() {
         }
       }
 
-      if(allPlayersMoved && confirm("All teams have moved. Advance round?")) {
+      if(allPlayersMoved && document.getElementById("info-area").innerHTML.includes("responding") && confirm("All teams have moved. Advance round?")) {
         advanceOnSubmit();
       }
     }
