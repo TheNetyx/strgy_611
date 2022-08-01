@@ -86,6 +86,6 @@ class AdminController < ApplicationController
       conflicts.push({combatants: occupants}) unless occupants.all?{|i| i.team == t}
     end
 
-    conflicts
+    conflicts.sort_by { |c| c[:combatants][0][:ypos] * GridConf::GRIDSIZE + c[:combatants][0][:xpos] }
   end
 end
