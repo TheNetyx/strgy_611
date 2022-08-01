@@ -70,37 +70,22 @@ class AdminController < ApplicationController
   end
 
   private
-  def get_conflicts # TODO: unretardify this.
+  def get_conflicts
     conflicts = []
     locations = []
-    Player.where("alive = true").order(:team).order(:name).each do |tp|
-      locations.push({player: tp, locid: tp.xpos * 9 + tp.ypos})
-    end
-    while locations.length > 0
-      sameloc = [locations[0][:player]]
-      locid = locations[0][:locid]
-      todel = []
+    repeats = nil
 
-      (1..(locations.length - 1)).each do |i|
-        if locations[i][:locid] == locid
-          sameloc.push locations[i][:player]
-          # dont delete the players yet to avoid messing with i and array indices
-        end
-      end
-
-      if sameloc.length > 1
-        t = sameloc[1].team
-        conflicts.push({combatants: sameloc}) unless sameloc.all?{|i| i.team == t}
-      end
-      locations.each do |loc|
-        if loc[:locid] == locid
-          todel.push loc
-        end
-      end
-      todel.each do |item|
-        locations.delete item
-      end
+    Player.where("alive = true").order(:team).each do |tp|
+      locations.push({x: tp.xpos, y: tp.ypos})
     end
+
+    repeats = locations.select{ |i| locations.count(i) > 1 }.uniq
+    repeats.each do |r|
+      occupants = Player.where("xpos = ? AND ypos = ?", r[:x], r[:y]).order(:team)
+      t = occupants[0].team
+      conflicts.push({combatants: occupants}) unless occupants.all?{|i| i.team == t}
+    end
+
     conflicts
   end
 end
