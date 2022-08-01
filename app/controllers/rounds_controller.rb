@@ -101,7 +101,8 @@ class RoundsController < ApplicationController
       Player.where("alive = true").each do |p|
         @locations.push({x: p.xpos, y: p.ypos})
       end
-      if @locations.detect{ |e| @locations.count(e) > 1 } && ! all_same_team(@locations)
+      repeat_locs = @locations.select{ |e| @locations.count(e) > 1 }
+      if repeat_locs && ! all_same_team(repeat_locs)
         flash[:notice] = ["unresolved conflicts"]
         redirect_back_or_to root_path and return
       end
@@ -173,14 +174,14 @@ class RoundsController < ApplicationController
   end
 
   private
-  def all_same_team arr
-    if arr.length == 0
-      return true
-    end
-    team = arr[0][:team]
-    arr.each do |item|
-      if item[:team] != team
-        return false
+  def all_same_team repeat_locs
+    repeat_locs.each do |loc|
+      players = Player.where("xpos = ? AND ypos = ?", loc[:x], loc[:y])
+      team = players[0][:team]
+      players.each do |p|
+        if p[:team] != team
+          return false
+        end
       end
     end
     true
