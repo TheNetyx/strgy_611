@@ -13,7 +13,7 @@ class Logins
     ]
 
     PASSWORDS = [
-        "supersecretadminpassword",
+        "abcd12340000",
         "149285",
         "140872",
         "495201",
